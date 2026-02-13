@@ -52,17 +52,16 @@
 
 <body class="h-screen w-full flex items-center justify-center m-0 overflow-hidden">
 
-<audio id="audio" loop>
-    <source src="vid.mp3" type="audio/mpeg">
-</audio>
 
-<script>
-document.addEventListener("click", function () {
-    document.getElementById("audio").play();
-}, { once: true });
-</script>
-
+    <div id="startScreen" 
+         class="fixed inset-0 bg-pink-200 flex items-center justify-center z-50">
     
+        <button onclick="startGame()" 
+            class="bg-pink-500 hover:bg-pink-600 text-white px-8 py-4 rounded-full text-xl font-bold shadow-lg">
+            Start Game ❤️
+        </button>
+    
+    </div>
     <div id="game-container"
         class="relative w-full max-w-[600px] h-[85vh] bg-white/40 backdrop-blur-md border-4 border-white rounded-[40px] shadow-2xl overflow-hidden flex flex-col">
 
@@ -144,6 +143,14 @@ document.addEventListener("click", function () {
         const yesBtn = document.getElementById('yesBtn');
         const noBtn = document.getElementById('noBtn');
         const quizQuestion = document.getElementById('quiz-question');
+const audio = document.getElementById("audio");
+
+function startGame() {
+    audio.play().catch(err => console.log(err));
+    document.getElementById("startScreen").style.display = "none";
+    update(); // start animation loop here
+}
+
 
         canvas.width = 600;
         canvas.height = 700;
@@ -275,7 +282,7 @@ document.addEventListener("click", function () {
             requestAnimationFrame(update);
         }
 
-        fallingImage.onload = () => update();
+        // fallingImage.onload = () => update();
 
         function checkAnswer() {
             const userAnswer = answerInput.value.trim().toLowerCase();
@@ -360,5 +367,6 @@ document.addEventListener("click", function () {
 
 
 </html>
+
 
 
