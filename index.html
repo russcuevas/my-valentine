@@ -146,13 +146,17 @@
         const yesBtn = document.getElementById('yesBtn');
         const noBtn = document.getElementById('noBtn');
         const quizQuestion = document.getElementById('quiz-question');
-const audio = document.getElementById("audio");
-
 function startGame() {
-    audio.play().catch(err => console.log(err));
+    const audio = document.getElementById("audio");
+
+    if (audio) {
+        audio.play().catch(err => console.log("Audio play blocked:", err));
+    }
+
     document.getElementById("startScreen").style.display = "none";
-    update(); // start animation loop here
+    update();
 }
+
 
 
         canvas.width = 600;
@@ -370,6 +374,7 @@ function startGame() {
 
 
 </html>
+
 
 
 
