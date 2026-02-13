@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HVD</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cherry+Bomb+One&family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+
+        .font-romantic {
+            font-family: 'Cherry Bomb One', cursive;
+        }
+
+        .card {
+            backdrop-filter: blur(15px);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center p-6">
+
+    <div
+        class="card bg-white/40 border-4 border-white rounded-[40px] shadow-2xl p-10 w-full max-w-lg text-center space-y-8 animate-fadeIn">
+
+        <h1 class="font-romantic text-5xl text-pink-600 drop-shadow-md">
+            Yayyy! ❤️
+        </h1>
+
+        <p class="text-pink-700 text-lg font-semibold">
+            Excited na ako makita ka <br> ngayon na po agad agad please :( ✨
+            <br>
+            <br>
+            Sagutin mo muna tapos i Screenshot mo at ipakita sa akin ha? 😘
+        </p>
+
+        <div class="space-y-6 text-left">
+
+            <div>
+                <label class="block text-pink-700 font-bold mb-2">
+                    🕒 Anong oras tayo magkikita?
+                </label>
+                <input type="time"
+                    class="w-full px-4 py-3 rounded-2xl border-2 border-pink-300 focus:border-pink-500 focus:outline-none shadow-sm">
+            </div>
+
+            <div>
+                <label class="block text-pink-700 font-bold mb-2">
+                    📍 Saan tayo magkikita?
+                </label>
+                <input type="text" placeholder="Format: Jollibee, MCDO"
+                    class="w-full px-4 py-3 rounded-2xl border-2 border-pink-300 focus:border-pink-500 focus:outline-none shadow-sm">
+            </div>
+
+        </div>
+
+        <button onclick="submitDate()"
+            class="mt-6 w-full bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 rounded-2xl transition hover:scale-105 shadow-lg">
+            Confirm Date 💕
+        </button>
+
+        <p id="responseMessage" class="text-pink-600 font-semibold mt-4 h-6"></p>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function formatTime12Hour(time24) {
+            if (!time24) return '';
+            let [hours, minutes] = time24.split(':').map(Number);
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            return `${hours}:${minutes.toString().padStart(2, '0')} ${ampm}`;
+        }
+
+
+        function submitDate() {
+            // Grab input values
+            const timeInput = document.querySelector('input[type="time"]').value;
+            const placeInput = document.querySelector('input[type="text"]').value.trim();
+
+            // Check if both fields are filled
+            if (!timeInput || !placeInput) {
+                Swal.fire({
+                    title: 'Oops! 😅',
+                    text: 'Paki-fill muna ang oras bi at lugar bago mag-submit alam kong lagi kang nagmamadali.',
+                    icon: 'warning',
+                    confirmButtonText: 'Okay 😬',
+                    color: '#000000'
+                });
+                return; // Stop function if inputs are empty
+            }
+
+            // All good, show SweetAlert
+            Swal.fire({
+                title: 'Happy Valentine\'s Day! <br> my bi! ❤️',
+                html: `Iloveyouuuuuuuuuuu! 😘<br>Time: <b>${formatTime12Hour(timeInput)}</b><br>Location: <b>${placeInput}</b><br>Screenshot mo na ito at ipakita sa akin ha!`,
+                icon: 'success',
+                confirmButtonText: 'Aww 😍',
+                color: '#000000',
+                backdrop: `
+        rgba(0,0,0,0.4)
+        url("https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif")
+        center
+        no-repeat
+    `,
+                showClass: { popup: 'animate__animated animate__zoomIn' },
+                hideClass: { popup: 'animate__animated animate__zoomOut' }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
